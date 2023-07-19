@@ -1,0 +1,92 @@
+body {
+  background-color: #F1F1F5;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 100px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 5px gray;
+  padding: 3%;
+  position: relative;
+}
+
+#completed{
+  position: absolute;
+  top: 5%;
+  width: 90%;
+  text-align: center;
+}
+
+
+input {
+  width: 80%;
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #F1F1F5;
+  color: #619FAD;
+  border: none;
+  padding: 2%;
+}
+
+button {
+  width: auto;
+  padding: 2%;
+  border: none;
+  background-color: #A5D5F8;
+  color: black;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #49A6E9;
+  color: white;
+}
+
+ul {
+  margin-top: 5%;
+  list-style-type: none;
+}
+
+li {
+  position: relative;
+  left: -10%;
+  margin-bottom: 6%;
+  transition: 0.5s;
+  padding: 2% 5%;
+  width: 100%;
+  border-radius: 10px;
+}
+li:hover{
+  background-color: #F1F1F5;
+  color: #619FAD;
+}
+
+li img {
+  position: absolute;
+  cursor: pointer;
+  width: 2vh;
+  /* max-width: 5%; */
+}
+
+#edit {
+  right: 15%;
+}
+
+#delete {
+  right: 5%;
+}
+
+#clearItems {
+  text-align: center;
+  color: #E682B8;
+  cursor: pointer;
+}
