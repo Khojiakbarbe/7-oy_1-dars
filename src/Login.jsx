@@ -22,7 +22,7 @@ function Login() {
 
     return (
         <div>
-            <button onClick={logIN}>Log IN</button>
+            <button className="logBtn logIn" onClick={logIN}>Log IN</button>
         </div>
     )
 }

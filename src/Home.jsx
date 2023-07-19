@@ -1,4 +1,4 @@
-import { collection, getDocs, addDoc } from "firebase/firestore/lite"
+import { collection, getDocs, addDoc, query, where } from "firebase/firestore/lite"
 import { useEffect, useState } from "react";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore/lite";
 import { db } from "./Base"
@@ -18,6 +18,9 @@ function Home() {
   const [input, setInput] = useState('')
   const [user, setUser] = useState();
 
+  useEffect(() => {
+    AuthUser()
+  }, [])
 
   function AuthUser() {
     const auth = getAuth();
@@ -33,18 +36,21 @@ function Home() {
 
 
   const getDate = async () => {
-    const snapShot = await getDocs(collection(db, 'todos'));
+    const q = query(collection(db, "todos"), where("user", "==", user));
+    const querySnapshot = await getDocs(q);
     let todos = [];
-    snapShot.forEach(doc => {
+    querySnapshot.forEach(doc => {
       todos.push({ title: doc.data(), id: doc.id })
     })
     setTodos([todos])
   }
 
+
   useEffect(() => {
-    AuthUser()
-    getDate()
-  }, [])
+    if (user) {
+      getDate()
+    }
+  }, [user])
 
 
 
@@ -69,7 +75,8 @@ function Home() {
       } else {
         try {
           const docRef = await addDoc(collection(db, "todos"), {
-            title: input
+            title: input,
+            user: user
           });
           hideWithTime('Item added to the list')
           console.log("Document written with ID: ", docRef.id);
@@ -116,9 +123,10 @@ function Home() {
     signOut(auth)
   }
 
+
   return (
     <div className="container">
-      <button onClick={logOut}>Log Out</button>
+      <button onClick={logOut} className='logBtn'>Log Out</button>
       <p id="completed" style={completed.includes('Removed') || completed.includes('Empty') ? { background: '#F8D7DA' } : { background: '#D4EDDA' }}>{completed}</p>
       <h1 style={{ textAlign: 'center' }}>Grocery Bud</h1>
 
